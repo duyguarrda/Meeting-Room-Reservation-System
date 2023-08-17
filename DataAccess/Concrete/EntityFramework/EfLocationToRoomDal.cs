@@ -28,7 +28,20 @@ namespace DataAccess.Concrete.EntityFramework
             }
 
         }
-    
+
+        public List<LocationToRoom> GetRoomsByLocationName(string locationName)
+        {
+            using (var context = new MeetingWebContext())
+            {
+
+                var room = context.LocationToRooms
+                    .Where(lr => lr.Location.LocationName == locationName)
+                    .Select(lr =>new LocationToRoom() { RoomId=lr.RoomId })
+                    .ToList();
+
+                return room;
+            }
+        }
 
     }
 }

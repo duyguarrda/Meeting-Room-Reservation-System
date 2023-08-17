@@ -40,6 +40,8 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<EfStafftitleDal>().As<IStafftitleDal>().SingleInstance();
 
 
+            builder.RegisterType<MeetingRequestManager>().As<IMeetingRequestService>().SingleInstance();
+            builder.RegisterType<EfMeetingRequest>().As<IMeetingRequestDal>().SingleInstance();
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();

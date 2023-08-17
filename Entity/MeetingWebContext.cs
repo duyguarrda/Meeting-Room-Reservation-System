@@ -15,8 +15,8 @@ public partial class MeetingWebContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<OperationClaim> OperationClaims { get; set; }
-    public virtual DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public  DbSet<OperationClaim> OperationClaims { get; set; }
+    public  DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public virtual DbSet<Equipment> Equipments { get; set; }
 
     public virtual DbSet<Gender> Genders { get; set; }
@@ -38,9 +38,7 @@ public partial class MeetingWebContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=MeetingWeb;Trusted_Connection=True;");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)=>optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=MeetingWeb;Trusted_Connection=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

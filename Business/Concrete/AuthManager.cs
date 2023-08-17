@@ -10,18 +10,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Entities.Concrete;
 using Entity.DTO;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Business.Concrete
 {
-    public class AuthManager :IAuthService
+    public class AuthManager : IAuthService
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper,IHttpContextAccessor httpContextAccessor)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -31,8 +35,8 @@ namespace Business.Concrete
             var user = new User
             {
                 Email = userForRegisterDto.Email,
-                UserName = userForRegisterDto.FirstName,
-                UserSurname = userForRegisterDto.LastName,
+                UserName = userForRegisterDto.UserName,
+                UserSurname = userForRegisterDto.UserSurname,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true
@@ -73,6 +77,16 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
-       
+     
+             public int GetCurrentUserId()
+        {
+            var identity = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null && int.TryParse(identity.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userId))
+            {
+                return userId;
+            }
+            throw new Exception("Mevcut kullanıcının ID'si alınamadı.");
+        }
+
     }
 }

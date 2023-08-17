@@ -33,7 +33,7 @@ namespace Business.Concrete
                 return result;
             }
             _equipmentDal.Add(equipment);
-            return new SuccessResult(Messages.EquipmentAdded);
+            return new SuccessDataResult<Equipment>(Messages.EquipmentAdded);
         }
 
         private IResult CheckIfRoomNameExists(string equipmentName)
@@ -44,7 +44,7 @@ namespace Business.Concrete
                 return new SuccessResult();
             }
 
-            return new ErrorResult(Messages.EquipmentNameInvalid);
+            return new ErrorDataResult<Equipment>(Messages.EquipmentNameInvalid);
         }
 
         public IResult DeleteEquipment(Equipment equipment)
@@ -52,7 +52,7 @@ namespace Business.Concrete
             var deletedEquipment = _equipmentDal.Get(p => p.EquipmentId == equipment.EquipmentId);
             if (deletedEquipment == null)
             {
-                return new ErrorResult(Messages.ThisEquipmentisNotFound);
+                return new ErrorDataResult<Equipment>(Messages.ThisEquipmentisNotFound);
 
             }
             _equipmentDal.Delete(equipment);
@@ -74,7 +74,7 @@ namespace Business.Concrete
             var updatedEquipment = _equipmentDal.Get(r => r.EquipmentId == equipment.EquipmentId);
             if (updatedEquipment == null)
             {
-                return new ErrorResult(Messages.EquipmentNotFound);
+                return new ErrorDataResult<Equipment>(Messages.EquipmentNotFound);
             }
 
 

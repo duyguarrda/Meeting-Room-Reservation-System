@@ -10,9 +10,9 @@ namespace Core.Entities.Concrete
 
         public string StafftitleName { get; set; } = null!;
 
-        public int InsertUserId { get; set; }
+        public int InsertUserId { get; set; } 
 
-        public DateTime InsertDate { get; set; }
+        public DateTime InsertDate { get; set; } 
 
         public int? UpdateUserId { get; set; }
 

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication2.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class EquipmentController : Controller
     {
         IEquipmentService _equipmentService;

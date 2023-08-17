@@ -7,6 +7,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
+
 
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
@@ -47,13 +49,13 @@ namespace Business.Concrete
 
         public IResult Delete(User user)
         {
-            var result = _userDal.Get(p => p.UserId == user.UserId);
+            var result = _userDal.Get(p => p.UserId ==user.UserId);
             if (result == null)
             {
                 return new ErrorResult(Messages.ThisUserisNotFound);
 
             }
-            _userDal.Delete(user);
+            _userDal.Delete(result);
             return new SuccessResult(Messages.UserIsDeleted);
         }
 
@@ -104,7 +106,9 @@ namespace Business.Concrete
             return _userDal.Get(u => u.Email == email);
         }
 
+   
 
-
+      
     }
 }
+

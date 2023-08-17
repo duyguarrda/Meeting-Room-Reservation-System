@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication2.Controllers
 {
-
-    public class UserController : ControllerBase
+    [ApiController]
+    [Route("[controller]")]
+    public class UserController : Controller
     {
 
         IUserService _userService;
@@ -106,6 +107,7 @@ namespace WebApplication2.Controllers
             return BadRequest(result);
 
         }
+
 
     }
 }

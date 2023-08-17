@@ -69,6 +69,7 @@ namespace Business.Constanst
         public static string UserIsUpdated;
 
         public static string StafftitleUpdated;
+        public static string Randevular;
     }
 }
 

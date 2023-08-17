@@ -11,5 +11,6 @@ namespace DataAccess.Abstract
     public   interface ILocationToRoomDal : IEntityRepository<LocationToRoom>
     {
         List<LocationToRoom> GetRoomsByLocationId(int locationId);
+        List<LocationToRoom> GetRoomsByLocationName(string locationName);
     }
 }

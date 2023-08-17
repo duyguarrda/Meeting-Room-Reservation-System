@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Core.Entities.Concrete
 {
 
-    public partial class Gender : IEntity
+    public  class Gender : IEntity
     {
         public int GenderId { get; set; }
 

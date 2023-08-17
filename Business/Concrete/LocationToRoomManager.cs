@@ -2,6 +2,7 @@
 using Business.Constanst;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,45 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<LocationToRoom>>(ex.Message);
             }
+        }
+
+        public IDataResult<List<LocationToRoom>> GetRoomsByLocationName(string locationName)
+        {
+            try
+            {
+                var rooms = _locationToRoomDal.GetRoomsByLocationName(locationName);
+
+                if (rooms.Count == 0)
+                {
+                    return new ErrorDataResult<List<LocationToRoom>>(Messages.RoomNotFound);
+                }
+
+                return new SuccessDataResult<List<LocationToRoom>>(rooms, Messages.RoomsListed);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<List<LocationToRoom>>(ex.Message);
+            }
+        }
+
+        public IDataResult<List<LocationToRoom>> GetRoomsByLocationId(int id)
+        {
+            try
+            {
+                var rooms = _locationToRoomDal.GetRoomsByLocationId(id);
+
+                if (rooms.Count == 0)
+                {
+                    return new ErrorDataResult<List<LocationToRoom>>(Messages.RoomNotFound);
+                }
+
+                return new SuccessDataResult<List<LocationToRoom>>(rooms, Messages.RoomsListed);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<List<LocationToRoom>>(ex.Message);
+            }
+
         }
     }
 }

@@ -7,9 +7,9 @@ namespace Core.Entities.Concrete
     public partial class User : IEntity
     {
         public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserSurname { get; set; }
-        public string Email { get; set; }
+        public string UserName { get; set; } = null!;
+        public string UserSurname { get; set; } = null!;
+        public string Email { get; set; } = null!;
         public byte[] PasswordSalt { get; set; }
 
         public byte[] PasswordHash { get; set; }
@@ -29,8 +29,8 @@ namespace Core.Entities.Concrete
 
         public DateTime? UpdateDate { get; set; }
 
-        public virtual Gender? Gender { get; set; }
+        public Gender? Gender { get; set; }
 
-        public virtual Stafftitle Stafftitle { get; set; } = null!;
+        public Stafftitle Stafftitle { get; set; } = null!;
     }
 }

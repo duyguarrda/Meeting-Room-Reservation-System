@@ -11,9 +11,10 @@ namespace Core.Entities.Concrete
         public int Id { get; set; }
         public int UserId { get; set; }
         public int OperationClaimId { get; set; }
-        public object InsertDate { get; set; }
-        public object InsertUserId { get; set; }
-        public object UpdateDate { get; set; }
-        public object UpdateUserId { get; set; }
+
+        public  User User { get; set; } = null!;
+
+        public OperationClaim OperationClaim { get; set; } = null!;
     }
+
 }

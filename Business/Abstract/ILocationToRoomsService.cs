@@ -11,6 +11,8 @@ namespace Business.Abstract
     public interface ILocationToRoomsService
     {
         IDataResult<List<LocationToRoom>> GetLocationToRoom();
+       IDataResult< List<LocationToRoom>> GetRoomsByLocationName(string locationName);
+        IDataResult<List<LocationToRoom>> GetRoomsByLocationId(int id);
 
     }
 }

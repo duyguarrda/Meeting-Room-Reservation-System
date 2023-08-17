@@ -6,7 +6,7 @@ namespace WebApii.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class RoomController : Controller
     {
 
         IRoomService _roomService;

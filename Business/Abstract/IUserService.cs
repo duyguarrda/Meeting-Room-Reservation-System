@@ -22,5 +22,6 @@ namespace Business.Abstract
        
         IResult GetUserByName(string locationName);
         User GetByMail(string email);
+      
     }
 }
